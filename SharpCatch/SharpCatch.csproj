@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>SharpCatch</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Mihai Stan</Authors>
+    <Company>SharpCatch</Company>
+    <Description>A library allowing a simple integration in .NET of Google's reCAPTCHA tools.</Description>
+    <RepositoryUrl>https://github.com/Mehigh17/SharpCatch</RepositoryUrl>
+    <PackageTags>recaptcha google</PackageTags>
+    <PackageProjectUrl>https://github.com/Mehigh17/SharpCatch</PackageProjectUrl>
+  </PropertyGroup>
+
+</Project>

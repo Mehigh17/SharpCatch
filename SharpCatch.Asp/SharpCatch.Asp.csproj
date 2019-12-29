@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>SharpCatch.Asp</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Mihai Stan</Authors>
+    <Company>SharpCatch</Company>
+    <Description>A library allowing a simple integration in ASP.NET Core of Google's reCAPTCHA tools.</Description>
+    <RepositoryUrl>https://github.com/Mehigh17/SharpCatch</RepositoryUrl>
+    <PackageTags>recaptcha google asp</PackageTags>
+    <PackageProjectUrl>https://github.com/Mehigh17/SharpCatch</PackageProjectUrl>
+  </PropertyGroup>
+
+</Project>
