@@ -12,4 +12,8 @@
     <PackageProjectUrl>https://github.com/Mehigh17/SharpCatch</PackageProjectUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.0" />
+  </ItemGroup>
+
 </Project>
