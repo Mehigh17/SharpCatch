@@ -35,21 +35,20 @@ namespace SharpCatch.Asp.Filters
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            if (context.HttpContext.Request.Query.TryGetValue("g-recaptcha-response", out var userToken))
-            {   
-                var recaptchaService = context.HttpContext.RequestServices.GetService(typeof(IRecaptchaService)) as RecaptchaService;
-                if (recaptchaService == null) throw new NullReferenceException($"The service of type {nameof(IRecaptchaService)} could not be resolved.");
+            context.HttpContext.Request.Query.TryGetValue("g-recaptcha-response", out var userToken);
 
-                var valid = await recaptchaService.IsValid(userToken.FirstOrDefault(),
-                                                           _action,
-                                                           _minimumScoreThreshold > 0.0 ? (double?)_minimumScoreThreshold : null, // Don't allow negative or zero scores since that would always pass the reCAPTCHA check.
-                                                           null);
+            var recaptchaService = context.HttpContext.RequestServices.GetService(typeof(IRecaptchaService)) as RecaptchaService;
+            if (recaptchaService == null) throw new NullReferenceException($"The service of type {nameof(IRecaptchaService)} could not be resolved.");
 
-                if (valid)
-                {
-                    await next.Invoke();
-                    return;
-                }
+            var valid = await recaptchaService.IsValid(userToken.FirstOrDefault() ?? null,
+                                                       _action,
+                                                       _minimumScoreThreshold > 0.0 ? (double?)_minimumScoreThreshold : null, // Don't allow negative or zero scores since that would always pass the reCAPTCHA check.
+                                                       null);
+
+            if (valid)
+            {
+                await next.Invoke();
+                return;
             }
 
             context.ModelState.TryAddModelError("InvalidRecaptcha", _errorMessage);
