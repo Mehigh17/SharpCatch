@@ -10,6 +10,8 @@
     <RepositoryUrl>https://github.com/Mehigh17/SharpCatch</RepositoryUrl>
     <PackageTags>recaptcha google</PackageTags>
     <PackageProjectUrl>https://github.com/Mehigh17/SharpCatch</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
