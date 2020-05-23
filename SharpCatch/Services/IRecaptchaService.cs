@@ -4,6 +4,9 @@ using SharpCatch.Model;
 
 namespace SharpCatch.Services
 {
+    /// <summary>
+    /// Interface exposing the public endpoints that a recaptcha service should implement.
+    /// </summary>
     public interface IRecaptchaService
     {
 

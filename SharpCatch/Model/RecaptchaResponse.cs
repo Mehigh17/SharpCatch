@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace SharpCatch.Model
 {
+    /// <summary>
+    /// Response given by the reCAPTCHA server.
+    /// </summary>
     public class RecaptchaResponse
     {
 

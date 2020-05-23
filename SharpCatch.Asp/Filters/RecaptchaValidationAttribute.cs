@@ -24,10 +24,16 @@ namespace SharpCatch.Asp.Filters
         /// <param name="minimumScoreThreshold">(reCAPTCHA v3 only) Minimum score threshold required to pass the test. If score is met, "success" property will be ignored.</param>
         /// <param name="action">(reCAPTCHA v3 only) The action that the token has been issued from. This is an extra safety check to verify the origin of the token.</param>
         /// <param name="errorMessage">The error message to be shown if the token is invalid or has not been provided.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws if the threshold score is negative.</exception>
         public RecaptchaValidationAttribute(double minimumScoreThreshold = 0.0,
                                             string action = null,
                                             string errorMessage = "Your recaptcha input was invalid, please try again.")
         {
+            if (minimumScoreThreshold < 0.0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(_minimumScoreThreshold), "The threshold score cannot be negative");
+            }
+            
             _minimumScoreThreshold = minimumScoreThreshold;
             _action = action;
             _errorMessage = errorMessage;

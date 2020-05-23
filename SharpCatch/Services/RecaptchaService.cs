@@ -9,7 +9,7 @@ namespace SharpCatch.Services
     public class RecaptchaService : IRecaptchaService
     {
 
-        private const string _VerificationEndpoint = "https://www.google.com/recaptcha/api/siteverify";
+        private const string VerificationEndpoint = "https://www.google.com/recaptcha/api/siteverify";
 
         private readonly string _secretKey;
         private readonly HttpClient _httpClient;
@@ -27,7 +27,7 @@ namespace SharpCatch.Services
         }
 
         /// <summary>
-        /// Create an instance of recaptcha service.
+        /// Create an instance of recaptcha service with a default instance of http client.
         /// </summary>
         /// <param name="secretKey">The secret key for the application.</param>
         /// <returns>An instance of RecaptchaService.</returns>
@@ -37,9 +37,12 @@ namespace SharpCatch.Services
         /// <inheritdoc/>
         public async Task<RecaptchaResponse> GetResponse(string userToken, string userAddress = null)
         {
-            var values = new Dictionary<string, string>();
-            values.Add("secret", _secretKey);
-            values.Add("response", userToken);
+            var values = new Dictionary<string, string>
+            {
+                {"secret", _secretKey},
+                {"response", userToken}
+            };
+            
             if (!string.IsNullOrEmpty(userAddress))
             {
                 values.Add("remoteip", userAddress);
@@ -47,7 +50,7 @@ namespace SharpCatch.Services
 
             var formUrlContent = new FormUrlEncodedContent(values);
 
-            var request = await _httpClient.PostAsync(_VerificationEndpoint, formUrlContent);
+            var request = await _httpClient.PostAsync(VerificationEndpoint, formUrlContent);
             var response = await JsonSerializer.DeserializeAsync<RecaptchaResponse>(await request.Content.ReadAsStreamAsync());
 
             return response;
